@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B85610A41E70EACD001A6C83 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85610A31E70EACD001A6C83 /* APIManager.swift */; };
 		B85826C41E6FDE9900554C0F /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B85826B71E6FDE8E00554C0F /* AlamofireImage.framework */; };
 		B85826C51E6FDE9900554C0F /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B85826B71E6FDE8E00554C0F /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B85826CE1E6FE22A00554C0F /* UserRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85826C91E6FE22A00554C0F /* UserRankingViewController.swift */; };
@@ -222,6 +223,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B85610A31E70EACD001A6C83 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		B85826AA1E6FDE8D00554C0F /* AlamofireImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlamofireImage.xcodeproj; path = "../../Downloads/AlamofireImage-master/AlamofireImage.xcodeproj"; sourceTree = "<group>"; };
 		B85826C91E6FE22A00554C0F /* UserRankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRankingViewController.swift; sourceTree = "<group>"; };
 		B85826CA1E6FE22A00554C0F /* UserRankingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserRankingViewController.xib; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 		B8E88E961E6E9C2F003C9ECD /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				B85610A31E70EACD001A6C83 /* APIManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B85610A41E70EACD001A6C83 /* APIManager.swift in Sources */,
 				B8E88E9A1E6E9C82003C9ECD /* BaseModel.swift in Sources */,
 				B8E88E2B1E6E8FBA003C9ECD /* AppDelegate.swift in Sources */,
 				B8E88EA41E6E9DCD003C9ECD /* UserRanking.swift in Sources */,
