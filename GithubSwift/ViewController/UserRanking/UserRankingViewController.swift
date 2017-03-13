@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 
-class UserRankingViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
+class UserRankingViewController: UIViewController{
 
     
     @IBOutlet weak var userRankingTableview: UITableView!
@@ -19,48 +19,42 @@ class UserRankingViewController: UIViewController , UITableViewDelegate , UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        self.userRankingTableview.register(UINib(nibName:"UserRankingTableViewCell",bundle:nil),forCellReuseIdentifier:"UserRankingTableViewCell")
+    self.userRankingTableview.register(UINib(nibName:"UserRankingTableViewCell",bundle:nil),forCellReuseIdentifier:"UserRankingTableViewCell")
         self.userRankingTableview.rowHeight = 80
-        loadDdata()
+//        loadDdata()
+        
+        
+        UserRanking.getUrlWithPar("https://api.github.com/search/users?q=language:objective-c&sort=followers&order=desc", success: { response in
+            //把得到的JSON数据转为数组
+            if let items = response as? NSDictionary{
+                
+                let user_list:NSArray = items.object(forKey: "items") as! NSArray
+                //遍历数组得到每一个字典模型
+                for user in user_list{
+                    if let object = UserRanking.deserialize(from: user as? NSDictionary) {
+                        print(object)
+                        self.userRankingList.add(object)
+                    }
+                }
+                self.userRankingTableview.reloadData()
+            }
+            
+        }) { (error) in
+            print(error)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+}
 
-    func loadDdata() -> Void {
-        
-        Alamofire.request("https://api.github.com/search/users?q=language:objective-c&sort=followers&order=desc").responseJSON { response in
-            
-            switch response.result.isSuccess {
-            case true:
-                //把得到的JSON数据转为数组
-                if let items = response.result.value as? NSDictionary{
-                    
-                    let user_list:NSArray = items.object(forKey: "items") as! NSArray
-                    
-                    //遍历数组得到每一个字典模型
-                    for user in user_list{
-                        if let object = UserRanking.deserialize(from: user as? NSDictionary) {
-                            print(object)
-                            self.userRankingList.add(object)
-                        }
-                    }
-                    
-                    self.userRankingTableview.reloadData()
-                }
-            case false:
-                print(response)
-            }
-        }
-    }
-    
-    
-    //==========
+
+
+
+extension UserRankingViewController:UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -69,7 +63,7 @@ class UserRankingViewController: UIViewController , UITableViewDelegate , UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserRankingTableViewCell")as?UserRankingTableViewCell
-        let obj:UserRanking = self.userRankingList[indexPath.row] as! UserRanking        
+        let obj:UserRanking = self.userRankingList[indexPath.row] as! UserRanking
         cell?.configCellData(par: obj)
         return cell!
     }
@@ -85,5 +79,6 @@ class UserRankingViewController: UIViewController , UITableViewDelegate , UITabl
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-
 }
+
+

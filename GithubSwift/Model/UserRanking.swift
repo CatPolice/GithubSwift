@@ -19,9 +19,20 @@ class UserRanking: BaseModel {
     var html_url : String!
     var login : String!
     
-    
-    
     required init() {
-        
+    }
+}
+
+
+extension UserRanking{
+    class func getUrlWithPar(_ url:String , success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()) ->Void{
+        APIManager.rl_GET(url: url, success: { response in
+            
+            success(response)
+            
+        }) { (error) in
+            print(error)
+            failture(error)
+        }
     }
 }
