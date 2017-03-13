@@ -22,7 +22,7 @@ class UserRankingViewController: UIViewController{
         // Do any additional setup after loading the view.
     self.userRankingTableview.register(UINib(nibName:"UserRankingTableViewCell",bundle:nil),forCellReuseIdentifier:"UserRankingTableViewCell")
         self.userRankingTableview.rowHeight = 80
-//        loadDdata()
+        
         
         
         UserRanking.getUrlWithPar("https://api.github.com/search/users?q=language:objective-c&sort=followers&order=desc", success: { response in
@@ -59,7 +59,6 @@ extension UserRankingViewController:UITableViewDelegate,UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserRankingTableViewCell")as?UserRankingTableViewCell
