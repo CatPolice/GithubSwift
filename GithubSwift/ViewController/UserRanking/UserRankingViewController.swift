@@ -27,8 +27,7 @@ class UserRankingViewController: UIViewController{
         
         UserRanking.getUrlWithPar("https://api.github.com/search/users?q=language:objective-c&sort=followers&order=desc", success: { response in
             //把得到的JSON数据转为数组
-            if let items = response as? NSDictionary{
-                
+            if let items:NSDictionary = response as NSDictionary?{
                 let user_list:NSArray = items.object(forKey: "items") as! NSArray
                 //遍历数组得到每一个字典模型
                 for user in user_list{
@@ -39,6 +38,7 @@ class UserRankingViewController: UIViewController{
                 }
                 self.userRankingTableview.reloadData()
             }
+     
             
         }) { (error) in
             print(error)
